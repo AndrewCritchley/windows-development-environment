@@ -26,3 +26,5 @@ puppet module install --target-dir ./modules basti1302-windows_path --version 0.
 puppet module install --target-dir ./modules puppetlabs-vcsrepo --version 1.0.2
 
 puppet apply --modulepath ./modules manifests/site.pp --verbose
+
+vagrant plugin install vagrant-aws
