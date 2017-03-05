@@ -5,30 +5,30 @@ node default {
   Package { provider => chocolatey, }
   
   $chocolateyPackages = [ 'git'
-				  , 'sourcetree'
-				  , 'poshgit'
-				  , 'python'
+                  , 'sourcetree'
+                  , 'poshgit'
+                  , 'python'
                   , 'vagrant'
                   , 'virtualbox'
-				  , 'docker'
+                  , 'docker'
                   , 'conemu'
                   , 'googlechrome'
                   , 'postman'
-				  , 'phantomjs'
-				  , 'selenium-chrome-driver'
+                  , 'phantomjs'
+                  , 'selenium-chrome-driver'
                   , 'winmerge'
-				  , 'grepwin'
-				  , 'pycharm-community'
+                  , 'grepwin'
+                  , 'pycharm-community'
                   , 'visualstudiocode'
-				  , 'notepadplusplus.install'
-				  , 'linqpad'
-				  , 'nuget.commandline'
-				  , 'autohotkey'
-				  , 'chocolateygui'
-				  , 'slack'
-				  , 'glasswire'
-				  , 'f.lux'
-				  , 'Carbon'
+                  , 'notepadplusplus.install'
+                  , 'linqpad'
+                  , 'nuget.commandline'
+                  , 'autohotkey'
+                  , 'chocolateygui'
+                  , 'slack'
+                  , 'glasswire'
+                  , 'f.lux'
+                  , 'Carbon'
                   , 'unxutils' ]
 
   package { $chocolateyPackages: 
@@ -60,9 +60,9 @@ node default {
   
   $windowsFeatures.each |$feature| { 
       dsc_windowsfeature { $feature: 
-	     dsc_ensure => 'present',
-	     dsc_name => $feature,
-	  }
+         dsc_ensure => 'present',
+         dsc_name => $feature,
+      }
   }
   
 }
