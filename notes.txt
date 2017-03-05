@@ -1,0 +1,7 @@
+If powershell DSC does not allow features to be enabled:
+
+DISM /online /get-features /format:table | more
+DISM /online /enable-feature /featurename:iis-webserver
+
+Get-WindowsOptionalFeature -Online | Format-Table | more
+Enable-WindowsOptionalFeature -Online -FeatureName [feature name] -All
