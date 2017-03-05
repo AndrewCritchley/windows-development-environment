@@ -5,6 +5,8 @@
 ## Description:
 #### Template for my basic development environment
 
+Import-Module .\refreshenv.ps1
+
 Set-ExecutionPolicy RemoteSigned
 
 ## Install chocolatey and puppet agent
