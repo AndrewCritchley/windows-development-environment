@@ -10,7 +10,6 @@ node default {
                   , 'python'
                   , 'vagrant'
                   , 'virtualbox'
-                  , 'docker'
                   , 'conemu'
                   , 'googlechrome'
                   , 'postman'
@@ -47,6 +46,7 @@ node default {
     source   => 'https://github.com/AndrewCritchley/WindowsDevelopmentEnvironment.git',
   }
 
+  # need to add this path in order to have ssh in the PATH
   windows_path { 'C:\Program Files\Git\usr\bin':
       ensure => present,
   }
@@ -54,15 +54,11 @@ node default {
   class { 'windows_autoupdate': 
     no_auto_reboot_with_logged_on_users => '1' 
   }
-  
-  $windowsFeatures = [ 'Web-Server'
-                  , 'Web-Asp-Net45' ]
-  
-  $windowsFeatures.each |$feature| { 
-      dsc_windowsfeature { $feature: 
-         dsc_ensure => 'present',
-         dsc_name => $feature,
-      }
+
+  exec { 'change-iis-default-log-path':
+    command   => 'Import-Module WebAdministration; Set-WebConfigurationProperty "/system.applicationHost/sites/siteDefaults" -name logfile.directory -value D:\Logging\IIS',
+    provider  => powershell,
+    logoutput => true,
   }
   
 }

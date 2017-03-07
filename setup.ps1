@@ -23,8 +23,37 @@ refreshenv
 
 puppet module install puppetlabs-chocolatey --version 2.0.0
 puppet module install basti1302-windows_path --version 0.1.1
-puppet module install puppetlabs-vcsrepo --version 1.0.2
+puppet module install puppetlabs-vcsrepo --version 1.5.0
 puppet module install puppetlabs-dsc --version 1.2.0
 puppet module install puppet-windows_autoupdate --version 1.2.0
+puppet module install puppet-iis --version 3.0.0
 
 puppet apply manifests/site.pp --verbose
+
+## Install Visual Studio Code Extensions
+
+$vsCodeExtensions = @(
+    "Borke.puppet",
+    "donjayamanne.python",
+    "ms-vscode.csharp",
+    "ms-vscode.PowerShell"
+)
+
+$vsCodeExtensions | % { 
+    Write-Host "Installing VSCode Extension $_..."
+    code --install-extension $_ 
+}
+
+## Install Windows Features
+
+$windowsFeatures = @(
+    "IIS-WebServer",
+    "IIS-StaticContent",
+    "IIS-ASPNET45",
+    "IIS-WebSockets"
+)
+
+$windowsFeatures | % { 
+    Write-Host "Enabling $_..."
+    DISM /online /enable-feature /featurename:$_ 
+}
