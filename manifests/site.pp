@@ -19,6 +19,7 @@ node default {
                   , 'grepwin'
                   , 'pycharm-community'
                   , 'visualstudiocode'
+                  , 'sql-server-management-studio'
                   , 'notepadplusplus.install'
                   , 'linqpad'
                   , 'nuget.commandline'
@@ -48,7 +49,7 @@ node default {
 
   # need to add this path in order to have ssh in the PATH
   windows_path { 'C:\Program Files\Git\usr\bin':
-      ensure => present,
+    ensure  => present,
   }
   
   class { 'windows_autoupdate': 
@@ -57,6 +58,12 @@ node default {
 
   exec { 'change-iis-default-log-path':
     command   => 'Import-Module WebAdministration; Set-WebConfigurationProperty "/system.applicationHost/sites/siteDefaults" -name logfile.directory -value D:\Logging\IIS',
+    provider  => powershell,
+    logoutput => true,
+  }
+
+  exec { 'set-git-username':
+    command   => 'git config --global user.name "AndrewCritchley"',
     provider  => powershell,
     logoutput => true,
   }

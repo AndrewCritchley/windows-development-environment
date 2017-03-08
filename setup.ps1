@@ -21,12 +21,20 @@ refreshenv
 
 ## Install puppet modules
 
-puppet module install puppetlabs-chocolatey --version 2.0.0
-puppet module install basti1302-windows_path --version 0.1.1
-puppet module install puppetlabs-vcsrepo --version 1.5.0
-puppet module install puppetlabs-dsc --version 1.2.0
-puppet module install puppet-windows_autoupdate --version 1.2.0
-puppet module install puppet-iis --version 3.0.0
+$puppetModules = @(
+    @{ module = "puppetlabs-chocolatey"; version = "2.0.0" },
+    @{ module = "basti1302-windows_path"; version = "0.1.1" },
+    @{ module = "puppetlabs-vcsrepo"; version = "1.5.0" },
+    @{ module = "puppetlabs-dsc"; version = "1.2.0" },
+    @{ module = "puppet-windows_autoupdate"; version = "1.2.0" },
+    @{ module = "puppet-iis"; version = "3.0.0" }
+)
+
+$puppetModules | % {
+    puppet module install $_.module --version $_.version
+}
+
+## Apply the puppet manifest on a masterless setup
 
 puppet apply manifests/site.pp --verbose
 
@@ -36,7 +44,8 @@ $vsCodeExtensions = @(
     "Borke.puppet",
     "donjayamanne.python",
     "ms-vscode.csharp",
-    "ms-vscode.PowerShell"
+    "ms-vscode.PowerShell",
+    "PeterJausovec.vscode-docker"
 )
 
 $vsCodeExtensions | % { 
