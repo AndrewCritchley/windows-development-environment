@@ -45,7 +45,9 @@ $vsCodeExtensions = @(
     "donjayamanne.python",
     "ms-vscode.csharp",
     "ms-vscode.PowerShell",
-    "PeterJausovec.vscode-docker"
+    "PeterJausovec.vscode-docker",
+    "bbenoist.vagrant",
+    "vscodevim.vim"
 )
 
 $vsCodeExtensions | % { 
