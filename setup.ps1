@@ -6,12 +6,19 @@
 #### Template for my basic development environment
 
 Import-Module .\refreshenv.ps1
+Import-Module .\check-command.ps1
 
 Set-ExecutionPolicy RemoteSigned
 
 ## Install chocolatey and puppet agent
 
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+$isChocoInstalled = Check-Command choco
+if($isChocoInstalled -eq $true) {
+	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+else {
+	Write-Host "Chocolatey already installed, skipping..."
+}
 
 refreshenv
 
@@ -61,10 +68,14 @@ $windowsFeatures = @(
     "IIS-WebServer",
     "IIS-StaticContent",
     "IIS-ASPNET45",
-    "IIS-WebSockets"
+    "IIS-WebSockets",
+	"Microsoft-Windows-Subsystem-Linux"
 )
 
 $windowsFeatures | % { 
     Write-Host "Enabling $_..."
     DISM /online /enable-feature /featurename:$_ 
 }
+
+# TODO:
+# http://stackoverflow.com/questions/40033608/enable-windows-10-developer-mode-programmatically

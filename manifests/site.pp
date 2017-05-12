@@ -7,14 +7,13 @@ node default {
   $chocolateyPackages = [ 'git'
                   , 'sourcetree'
                   , 'poshgit'
+                  , 'tortoisegit'
                   , 'python'
                   , 'vagrant'
                   , 'virtualbox'
                   , 'conemu'
                   , 'googlechrome'
                   , 'postman'
-                  , 'phantomjs'
-                  , 'selenium-chrome-driver'
                   , 'winmerge'
                   , 'grepwin'
                   , 'pycharm-community'
@@ -45,6 +44,12 @@ node default {
     ensure   => present,
     provider => git,
     source   => 'https://github.com/AndrewCritchley/WindowsDevelopmentEnvironment.git',
+  }
+  
+  vcsrepo { 'D:\Github\SeleniumHubDocker':
+    ensure   => present,
+    provider => git,
+    source   => 'https://github.com/AndrewCritchley/SeleniumHubDocker.git',
   }
 
   # need to add this path in order to have ssh in the PATH
