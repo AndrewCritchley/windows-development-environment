@@ -1,8 +1,6 @@
 include chocolatey
 
 node default {
-
-  Package { provider => chocolatey, }
   
   $chocolateyPackages = [ 'git'
                   , 'sourcetree'

@@ -1,0 +1,26 @@
+version: '3'
+services:
+    selenium_hub:
+      image: selenium/hub:3.4.0
+      ports:
+        - "4444:4444"
+    selenium_firefox:
+      image: selenium/node-firefox-debug:3.4.0
+      ports:
+        - "5901:5900"
+      restart: always
+      depends_on:
+        - selenium_hub
+      environment:
+        - HUB_PORT_4444_TCP_ADDR=selenium_hub
+        - HUB_PORT_4444_TCP_PORT=4444
+    selenium_chrome:
+      image: selenium/node-chrome-debug:3.4.0
+      ports:
+        - "5900:5900"
+      restart: always
+      depends_on:
+        - selenium_hub
+      environment:
+        - HUB_PORT_4444_TCP_ADDR=selenium_hub
+        - HUB_PORT_4444_TCP_PORT=4444
