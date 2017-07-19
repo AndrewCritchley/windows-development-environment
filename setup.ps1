@@ -23,7 +23,7 @@ else {
 
 refreshenv
 
-choco install puppet-agent -y
+choco install chocolatey-packages.config -y
 
 refreshenv
 
@@ -51,6 +51,3 @@ $config.windowsFeatures | % {
     Write-Host "Enabling Windows Feature $_..."
     DISM /online /enable-feature /featurename:$_ 
 }
-
-# TODO:
-# http://stackoverflow.com/questions/40033608/enable-windows-10-developer-mode-programmatically

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    ports:
+    - "10080:80"
+    - "10022:22"
+    volumes:
+      - D:\docker_volumes\gitlab\etc\gitlab:/etc/gitlab
+      - D:\docker_volumes\gitlab\var\opt\gitlab:/var/opt/gitlab
+      - D:\docker_volumes\gitlab\var\log\gitlab:/var/log/gitlab
+    restart: always
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --no-auth
+    ports:
+      - "9000:9000"
+    restart: always

@@ -31,6 +31,5 @@ $config = @{
 		"IIS-StaticContent",
 		"IIS-ASPNET45",
 		"IIS-WebSockets",
-		"Microsoft-Windows-Subsystem-Linux"
 	)
 }

@@ -1,53 +1,15 @@
-include chocolatey
-
 node default {
-  
-  $chocolateyPackages = [ 'git'
-                  , 'sourcetree'
-                  , 'poshgit'
-                  , 'tortoisegit'
-                  , 'python'
-                  , 'vagrant'
-                  , 'virtualbox'
-                  , 'conemu'
-                  , 'googlechrome'
-                  , 'postman'
-                  , 'winmerge'
-                  , 'grepwin'
-                  , 'pycharm-community'
-                  , 'visualstudiocode'
-                  , 'sql-server-management-studio'
-                  , 'notepadplusplus.install'
-                  , 'linqpad'
-                  , 'nuget.commandline'
-                  , 'autohotkey'
-                  , 'chocolateygui'
-                  , 'slack'
-                  , 'glasswire'
-                  , 'f.lux'
-                  , 'Carbon'
-                  , 'unxutils' ]
 
-  package { $chocolateyPackages: 
-    ensure => 'installed' 
-  }
-
-  vcsrepo { 'D:\Github\VagrantBoxes':
+  vcsrepo { 'D:\Github\vagrant-files':
     ensure   => present,
     provider => git,
-    source   => 'https://github.com/AndrewCritchley/VagrantFiles.git',
+    source   => 'https://github.com/AndrewCritchley/vagrant-files.git',
   }
 
-  vcsrepo { 'D:\Github\DeveloperMachineConfig':
+  vcsrepo { 'D:\Github\Windows-Development-Environment':
     ensure   => present,
     provider => git,
-    source   => 'https://github.com/AndrewCritchley/WindowsDevelopmentEnvironment.git',
-  }
-  
-  vcsrepo { 'D:\Github\SeleniumHubDocker':
-    ensure   => present,
-    provider => git,
-    source   => 'https://github.com/AndrewCritchley/SeleniumHubDocker.git',
+    source   => 'https://github.com/AndrewCritchley/windows-development-environment.git',
   }
 
   # need to add this path in order to have ssh in the PATH
