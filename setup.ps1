@@ -5,21 +5,22 @@
 ## Description:
 #### Template for my basic development environment
 
-Import-Module .\refreshenv.ps1
-Import-Module .\check-command.ps1
-Import-Module .\config.ps1
+Set-ExecutionPolicy Unrestricted
 
-Set-ExecutionPolicy RemoteSigned
+Import-Module .\refreshenv.ps1
+Import-Module .\check-command.psm1
+Import-Module .\config.ps1
 
 ## Install chocolatey and puppet agent
 
 $isChocoInstalled = Check-Command choco
-if($isChocoInstalled -eq $true) {
+if($isChocoInstalled -eq $false ) {
 	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 else {
 	Write-Host "Chocolatey already installed, skipping..."
 }
+
 
 refreshenv
 

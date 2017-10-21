@@ -6,7 +6,7 @@ $config = @{
 		@{ module = "puppetlabs-dsc"; version = "1.2.0" },
 		@{ module = "puppet-windows_autoupdate"; version = "1.2.0" },
 		@{ module = "puppet-iis"; version = "3.0.0" }
-	),
+	)
 	
 	vsCodeExtensions = @(
 		"bbenoist.vagrant",
@@ -23,13 +23,13 @@ $config = @{
 		"PeterJausovec.vscode-docker",
 		"sanderledegen.angular-follow-selector",
 		"steoates.autoimport",
-		"vscodevim.vim",
-	),
+		"vscodevim.vim"
+	)
 	
 	windowsFeatures = @(
 		"IIS-WebServer",
 		"IIS-StaticContent",
 		"IIS-ASPNET45",
-		"IIS-WebSockets",
+		"IIS-WebSockets"
 	)
 }
